@@ -3,7 +3,7 @@
 // icon-color: deep-green; icon-glyph: arrow-circle-down;
 const githubBaseUrl = "https://raw.githubusercontent.com/Brahmah/schoolbox/main";
 
-const dependenciesReq = new Request(githubBaseUrl + "/dependencies.json")
+const dependenciesReq = new Request(githubBaseUrl + "/scripts.json")
 const dependancies = await dependenciesReq.loadJSON();
 
 // Determine if the user is using iCloud.
