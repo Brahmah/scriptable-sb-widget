@@ -3,13 +3,7 @@
 // icon-color: deep-blue; icon-glyph: clock;
 
 //--------------------------------------------- Authentication ----------------------------------------------//
-const files = FileManager.local();
-const moduleDir = files.joinPath(files.libraryDirectory(), "/schoolbox_modules");
-
-let SchoolBoxAuth = importModule(moduleDir + '/auth.js');
-
-var auth = await SchoolBoxAuth.presentMenu();
-console.log(auth);
+/*<DOWNLOADER SCRIPT SHOULD INSERT AUTH CODE HERE>*/
 
 //----------------------------------------------- Script Main -----------------------------------------------//
 if (config.runsInWidget) {
