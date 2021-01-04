@@ -17,8 +17,15 @@ files = iCloudInUse ? FileManager.iCloud() : files
 // Downlaod Dependancies
 for (var i=0; i < dependancies.length; i++) {
   var dependency = dependancies[i];
+  // Download Dependency
   const pathToCode = files.joinPath(files.documentsDirectory(), dependency.filename);
-  var req = new Request(githubBaseUrl + dependency.url)
-  var codeString = await req.loadString();
-  files.writeString(pathToCode, codeString);
+  var codeReq = new Request(githubBaseUrl + dependency.url)
+  var codeString = await codeReq.loadString();
+  // Add Authentication Code To File
+  var authReq = new Request(githubBaseUrl + "/dependencies/authenticationHandler.js")
+  var authCodeString = await authReq.loadString();
+  var fileToBeWritten = String(codeString).replace('/*<DOWNLOADER SCRIPT SHOULD INSERT AUTH CODE HERE>*/', authCodeString)
+  console.log(authCodeString)
+  // Write File To Disk
+  files.writeString(pathToCode, fileToBeWritten);
 }
