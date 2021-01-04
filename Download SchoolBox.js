@@ -6,7 +6,13 @@ const githubBaseUrl = "https://raw.githubusercontent.com/Brahmah/schoolbox/main"
 const dependenciesReq = new Request(githubBaseUrl + "/dependencies.json")
 const dependancies = await dependenciesReq.loadJSON();
 
-const files = FileManager.local();
+// Determine if the user is using iCloud.
+let files = FileManager.local()
+const iCloudInUse = files.isFileStoredIniCloud(module.filename)
+
+// If so, use an iCloud file manager.
+files = iCloudInUse ? FileManager.iCloud() : files
+
 
 // Downlaod Dependancies
 for (var i=0; i < dependancies.length; i++) {
