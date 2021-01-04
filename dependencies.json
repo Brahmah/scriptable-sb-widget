@@ -1,9 +1,4 @@
 [{
-	"url": "/dependencies/TimetableWidget.js",
-	"filename": "TimetableWidget.js",
-	"isModule": true
-}, {
-	"url": "/dependencies/auth.js",
-	"filename": "auth.js",
-	"isModule": true
+	"url": "/Scripts/Timetable.js",
+	"filename": "Timetable.js"
 }]
