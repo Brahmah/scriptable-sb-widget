@@ -2,9 +2,6 @@
 // These must be at the very top of the file. Do not edit.
 // icon-color: deep-blue; icon-glyph: clock;
 
-//--------------------------------------------- Authentication ----------------------------------------------//
-/*<DOWNLOADER SCRIPT SHOULD INSERT AUTH CODE HERE>*/
-
 //----------------------------------------------- Script Main -----------------------------------------------//
 if (config.runsInWidget) {
   await setWidget()
@@ -13,7 +10,10 @@ if (config.runsInWidget) {
 
 Script.complete()
 
-//---------------------------------------------- Get Data --------------------------------------------------//
+//--------------------------------------------- Authentication ----------------------------------------------//
+/*<DOWNLOADER SCRIPT SHOULD INSERT AUTH CODE HERE>*/
+
+//----------------------------------------------- Get Data --------------------------------------------------//
 
 //-------------------------- Timetable Breakdown ----------------------------//
 var timetable = {};
