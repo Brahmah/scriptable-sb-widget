@@ -1,4 +1,12 @@
 const DEFAULT_SCHOOLBOX_URL = null;
+//
+//const files = FileManager.local();
+//const moduleDir = files.joinPath(files.libraryDirectory(), "/schoolbox_modules");
+//
+//let SchoolBoxAuth = importModule(moduleDir + '/auth.js');
+//
+//var auth = await SchoolBoxAuth.presentMenu();
+//console.log(auth);
 
 // Prefix used for items in the keychain.
 let KEYCHAIN_PREFIX = "schoolbox";
