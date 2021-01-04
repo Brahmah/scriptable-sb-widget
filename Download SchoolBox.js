@@ -13,6 +13,9 @@ const iCloudInUse = files.isFileStoredIniCloud(module.filename)
 // If so, use an iCloud file manager.
 files = iCloudInUse ? FileManager.iCloud() : files
 
+// Download Authentication Handler
+var authReq = new Request(githubBaseUrl + "/dependencies/authenticationHandler.js")
+var authCodeString = await authReq.loadString();
 
 // Downlaod Dependancies
 for (var i=0; i < dependancies.length; i++) {
@@ -22,10 +25,7 @@ for (var i=0; i < dependancies.length; i++) {
   var codeReq = new Request(githubBaseUrl + dependency.url)
   var codeString = await codeReq.loadString();
   // Add Authentication Code To File
-  var authReq = new Request(githubBaseUrl + "/dependencies/authenticationHandler.js")
-  var authCodeString = await authReq.loadString();
   var fileToBeWritten = String(codeString).replace('/*<DOWNLOADER SCRIPT SHOULD INSERT AUTH CODE HERE>*/', authCodeString)
-  console.log(authCodeString)
   // Write File To Disk
   files.writeString(pathToCode, fileToBeWritten);
 }
