@@ -2,6 +2,8 @@
 // These must be at the very top of the file. Do not edit.
 // icon-color: deep-blue; icon-glyph: clock;
 
+const { presentMenu } = require("../Dependencies/authentication");
+
 //--------------------------------------------- Authentication ----------------------------------------------//
 insert['/Dependencies/authentication.js']
 
@@ -36,9 +38,20 @@ async function setWidget() {
 
 insert['/Dependencies/Timetable/widget.js']
 
+//------------------------------------------------ Table ---------------------------------------------------//
+async function presentTable() {
+  var table = generateTable();
+  QuickLook.present(table)
+}
+
+insert['/Dependencies/Timetable/table.js']
+
 //----------------------------------------------- Script Main -----------------------------------------------//
 if (config.runsInWidget) {
   await setWidget()
+}
+else {
+  await presentTable()
 }
 
 Script.complete()
