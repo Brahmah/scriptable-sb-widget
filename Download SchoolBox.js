@@ -38,3 +38,5 @@ for (var i=0; i < scripts.length; i++) {
   // Write File To Disk
   files.writeString(pathToCode, fileToBeWritten);
 }
+
+Script.complete()
