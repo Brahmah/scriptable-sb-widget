@@ -12,6 +12,7 @@ Script.complete()
 
 //--------------------------------------------- Authentication ----------------------------------------------//
 insert['/dependencies/authenticationHandler.js']
+insert['/dependencies/authenticationHandler.js']
 
 //----------------------------------------------- Get Data --------------------------------------------------//
 
