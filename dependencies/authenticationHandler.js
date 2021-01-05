@@ -19,7 +19,7 @@ async function makeAuthRequest(crededentials) {
   crededentials = crededentials || getCrededentials();
   // Authenticate With The Server
   const authUrl =
-    DEFAULT_SCHOOLBOX_URL + "/login" || crededentials.url + "/login"; // "https://schoolbox.ilimcollege.vic.edu.au/login"
+    DEFAULT_SCHOOLBOX_URL + "/login" || crededentials.url + "/login"; 
   const authReq = new Request(authUrl);
   authReq.method = "POST";
   authReq.body = `Submit=Login&page=&password=${crededentials.password}&username=${crededentials.username}`;
