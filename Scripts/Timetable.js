@@ -2,10 +2,8 @@
 // These must be at the very top of the file. Do not edit.
 // icon-color: deep-blue; icon-glyph: clock;
 
-insert['/Dependencies/colors.js']
-
 //--------------------------------------------- Authentication ----------------------------------------------//
-insert['/Dependencies/authentication.js']
+insert["/Dependencies/authentication.js"];
 
 //----------------------------------------------- Get Data --------------------------------------------------//
 
@@ -14,13 +12,13 @@ var timetable = {};
 for (var i = 0; i < timetableData.Days.length; i++) {
   if (timetableData.Days[i].IsCurrentDay) {
     try {
-      timetable.currentDay = timetableData.Days[i]
+      timetable.currentDay = timetableData.Days[i];
     } catch {}
     try {
-      timetable.nextDay = timetableData.Days[i + 1]
+      timetable.nextDay = timetableData.Days[i + 1];
     } catch {}
     try {
-      timetable.previousDay = timetableData.Days[i - 1]
+      timetable.previousDay = timetableData.Days[i - 1];
     } catch {}
   }
 }
@@ -35,23 +33,22 @@ async function setWidget() {
       : await createLargeWidget();
   Script.setWidget(widget);
 }
+insert["/Dependencies/colors.js"];
 
-insert['/Dependencies/Timetable/widget.js']
-
-//------------------------------------------------ Table ---------------------------------------------------//
-async function presentTable() {
-  var table = await generateTable();
-  QuickLook.present(table)
-}
-
-insert['/Dependencies/Timetable/table.js']
+insert["/Dependencies/Timetable/widget.js"];
 
 //----------------------------------------------- Script Main -----------------------------------------------//
 if (config.runsInWidget) {
-  await setWidget()
-}
-else {
-  await presentTable()
+  var widget =
+    config.widgetFamily == "small"
+      ? await createSmallWidget()
+      : config.widgetFamily == "medium"
+      ? await createMediumWidget()
+      : await createLargeWidget();
+  Script.setWidget(widget);
+} else {
+  var widget = await createMediumWidget();
+  widget.presentMedium();
 }
 
-Script.complete()
+Script.complete();
