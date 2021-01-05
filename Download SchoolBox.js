@@ -33,7 +33,7 @@ for (var i=0; i < scripts.length; i++) {
       var req = new Request(matchedDependencyUrl);
       var dependencyCode = await req.loadString();
       // Replace Insert With Dependency Code
-      fileToBeWritten.replace(matchedDependency, dependencyCode);
+      fileToBeWritten = fileToBeWritten.replace(matchedDependency, dependencyCode);
   }
   // Write File To Disk
   files.writeString(pathToCode, fileToBeWritten);
