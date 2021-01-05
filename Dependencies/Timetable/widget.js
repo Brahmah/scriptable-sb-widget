@@ -110,19 +110,19 @@
     
     let firstLine = verticalStack.addStack();
     let SubjectName = firstLine.addText(scheduleData.Name);
-    SubjectName.font = Font.boldSystemFont(config.widgetFamily == "large" ? 13 : Device.isPad() ? 11 : 10);
+    SubjectName.font = Font.boldSystemFont(config.widgetFamily == "large" ? 12 : Device.isPad() ? 11 : 10);
     SubjectName.textColor = Color.dynamic(Color.black(), Color.white());;
     SubjectName.lineLimit = 1;
   
     let secondLine = verticalStack.addStack();
     let Time = secondLine.addText(scheduleData.Time);
-    Time.font = new Font("Menlo-Regular", config.widgetFamily == "large" ? 11 : Device.isPad() ? 9 : 8);
+    Time.font = new Font("Menlo-Regular", config.widgetFamily == "large" ? 10 : Device.isPad() ? 9 : 8);
     Time.textColor = Color.dynamic(new Color("#1c1c1e"), new Color("#eeeeee"));
     Time.lineLimit = 1;
   
     let thirdLine = verticalStack.addStack();
     let Location = thirdLine.addText(scheduleData.Location);
-    Location.font = new Font("Menlo-Regular", config.widgetFamily == "large" ? 11 : Device.isPad() ? 9 : 8);
+    Location.font = new Font("Menlo-Regular", config.widgetFamily == "large" ? 10 : Device.isPad() ? 9 : 8);
     Location.textColor = Color.dynamic(new Color("#1c1c1e"), new Color("#eeeeee"));
     Location.lineLimit = 1;
   
@@ -131,7 +131,7 @@
     
     let badgeContainer = firstLine.addStack();
     let Badge = badgeContainer.addText(scheduleData.Period);
-    Badge.font = Font.boldSystemFont(config.widgetFamily == "large" ? 11 : Device.isPad() ? 9 : 8); 
+    Badge.font = Font.boldSystemFont(config.widgetFamily == "large" ? 10 : Device.isPad() ? 9 : 8); 
     Badge.textColor = Color.white();
     Badge.lineLimit = 1;
     Badge.rightAlignText();
