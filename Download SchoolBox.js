@@ -3,8 +3,8 @@
 // icon-color: deep-green; icon-glyph: arrow-circle-down;
 const githubBaseUrl = "https://raw.githubusercontent.com/Brahmah/schoolbox/main";
 
-const dependenciesReq = new Request(githubBaseUrl + "/scripts.json")
-const dependancies = await dependenciesReq.loadJSON();
+const scriptsReq = new Request(githubBaseUrl + "/scripts.json")
+const scripts = await scriptsReq.loadJSON();
 
 // Determine if the user is using iCloud.
 let files = FileManager.local()
@@ -13,19 +13,21 @@ const iCloudInUse = files.isFileStoredIniCloud(module.filename)
 // If so, use an iCloud file manager.
 files = iCloudInUse ? FileManager.iCloud() : files
 
-// Download Authentication Handler
-var authReq = new Request(githubBaseUrl + "/dependencies/authenticationHandler.js")
-var authCodeString = await authReq.loadString();
-
-// Downlaod Dependancies
-for (var i=0; i < dependancies.length; i++) {
-  var dependency = dependancies[i];
-  // Download Dependency
-  const pathToCode = files.joinPath(files.documentsDirectory(), dependency.filename);
-  var codeReq = new Request(githubBaseUrl + dependency.url)
-  var codeString = await codeReq.loadString();
-  // Add Authentication Code To File
-  var fileToBeWritten = String(codeString).replace('/*<DOWNLOADER SCRIPT SHOULD INSERT AUTH CODE HERE>*/', authCodeString)
+// Downlaod Scripts
+for (var i=0; i < scripts.length; i++) {
+  var script = scripts[i];
+  var fileToBeWritten = "";
+  // Download Script
+  const pathToCode = files.joinPath(files.documentsDirectory(), script.filename);
+  var codeReq = new Request(githubBaseUrl + script.url)
+  fileToBeWritten = await codeReq.loadString();
+  // Download Dependencies
+  var matchedRequiredDependencies = fileToBeWritten.match(/insert\['(.*?)'\]/g);
+  log(matchedRequiredDependencies)
+// Will log ["@Emran", "@Raju", "@Noman"]
+  //var authReq = new Request(githubBaseUrl + "/dependencies/authenticationHandler.js")
+  //var authCodeString = await authReq.loadString();
+  //fileToBeWritten = String(fileToBeWritten).replace('/*<DOWNLOADER SCRIPT SHOULD INSERT AUTH CODE HERE>*/', authCodeString)
   // Write File To Disk
-  files.writeString(pathToCode, fileToBeWritten);
+  //files.writeString(pathToCode, fileToBeWritten);
 }

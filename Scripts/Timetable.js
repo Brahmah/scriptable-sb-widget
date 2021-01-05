@@ -11,7 +11,7 @@ if (config.runsInWidget) {
 Script.complete()
 
 //--------------------------------------------- Authentication ----------------------------------------------//
-/*<DOWNLOADER SCRIPT SHOULD INSERT AUTH CODE HERE>*/
+insert['/dependencies/authenticationHandler.js']
 
 //----------------------------------------------- Get Data --------------------------------------------------//
 
