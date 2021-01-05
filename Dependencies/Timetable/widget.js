@@ -1,32 +1,21 @@
   //------------------------------ LARGE WIDGET -------------------------------//
   async function createLargeWidget() {
     let widget = await generateWidgetBoilerplate();
-    //------------------ Foreach Day ------------------------//
-    for (var y = 0; y < 2; y++) {
-      //---------------- Widget Header ----------------------//
-      if (y == 1) {widget.addSpacer()}
-      await addHeader(widget, y == 0 ? "Today" : "Tommorrow");
-      //----------------- Widget Main -----------------------//
-      let main = widget.addStack();
-      main.spacing = 10;
-      //------------- Schedules Container -------------------//
-      var twoSidedStack = await addTwoSidedStack(main);
-      //------------------- Schedules -----------------------//
-      var maximumInWidget = 6;
-      var dayToBeDisplayed = y == 0 ? timetable.currentDay : timetable.nextDay;
-      for (var i = 0; i < dayToBeDisplayed.Schedules.length; i++) {
-        // Widget can only contain soo many events
-        if (i < maximumInWidget) {
-          // check if i is even
-          if (i % 2 == 0) {
-            await addSchedule(twoSidedStack.leftStack, i, dayToBeDisplayed.Schedules[i]);
-          } else {
-            await addSchedule(twoSidedStack.rightStack, i, dayToBeDisplayed.Schedules[i]);
-          }
-        }
+    //---------------- Widget Header ----------------------//
+    await addHeader(widget, "Today");
+    //----------------- Widget Main -----------------------//
+    let main = widget.addStack();
+    main.spacing = 10;
+    main.layoutVertically();
+    //------------------- Schedules -----------------------//
+    var maximumInWidget = 6;
+    var dayToBeDisplayed = timetable.currentDay;
+    for (var i = 0; i < dayToBeDisplayed.Schedules.length; i++) {
+      // Widget can only contain soo many events
+      if (i < maximumInWidget) {
+        await addSchedule(main, i, dayToBeDisplayed.Schedules[i]);
       }
     }
-  
     widget.addSpacer();
     // Return
     return widget;
