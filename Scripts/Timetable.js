@@ -2,6 +2,8 @@
 // These must be at the very top of the file. Do not edit.
 // icon-color: deep-blue; icon-glyph: clock;
 
+insert['/Dependencies/colors.js']
+
 //--------------------------------------------- Authentication ----------------------------------------------//
 insert['/Dependencies/authentication.js']
 
@@ -38,7 +40,7 @@ insert['/Dependencies/Timetable/widget.js']
 
 //------------------------------------------------ Table ---------------------------------------------------//
 async function presentTable() {
-  var table = generateTable();
+  var table = await generateTable();
   QuickLook.present(table)
 }
 
