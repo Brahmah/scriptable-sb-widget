@@ -32,13 +32,13 @@ for (var i = 0; i < timetableData.Days.length; i++) {
 }
 
 //----------------------------------------------- Widget ---------------------------------------------------//
-async function setWidget(timetable) {
+async function setWidget() {
   var widget =
     config.widgetFamily == "small"
-      ? await createSmallWidget(timetable)
+      ? await createSmallWidget()
       : config.widgetFamily == "medium"
-      ? await createMediumWidget(timetable)
-      : await createLargeWidget(timetable);
+      ? await createMediumWidget()
+      : await createLargeWidget();
   Script.setWidget(widget);
 }
 
@@ -54,7 +54,7 @@ var colors = [
 
 
 //------------------------------ LARGE WIDGET -------------------------------//
-async function createLargeWidget(timetable) {
+async function createLargeWidget() {
   let widget = await generateWidgetBoilerplate();
   //------------------ Foreach Day ------------------------//
   for (var y = 0; y < 2; y++) {
@@ -88,7 +88,7 @@ async function createLargeWidget(timetable) {
 }
 
 //--------------------------- MEDIUM WIDGET -------------------------------//
-async function createMediumWidget(timetable) {
+async function createMediumWidget() {
   let widget = await generateWidgetBoilerplate();
   //---------------- Widget Header ----------------------//
   await addHeader(widget, "Today");
@@ -117,7 +117,7 @@ async function createMediumWidget(timetable) {
 }
 
 //---------------------------- SMALL WIDGET -------------------------------//
-async function createSmallWidget(timetable) {
+async function createSmallWidget() {
   let widget = await generateWidgetBoilerplate();
   //---------------- Widget Header ----------------------//
   await addHeader(widget, "Up Next");
