@@ -22,8 +22,13 @@ for (var i=0; i < scripts.length; i++) {
   var codeReq = new Request(githubBaseUrl + script.url)
   fileToBeWritten = await codeReq.loadString();
   // Download Dependencies
-  var matchedRequiredDependencies = fileToBeWritten.match(/insert\['(.*?)'\]/g);
-  log(matchedRequiredDependencies)
+  var matchedRequiredDependencies = fileToBeWritten.match(/insert\['(.*?)'\]/g) || [];
+  matchedRequiredDependencies.forEach(matchedDependency => {
+    var matchedDependencyUrl = matchedDependency.match(/insert\['(.*?)'\]/),
+      matchedDependencyUrl = matchedDependencyUrl[1],
+      matchedDependencyUrl = githubBaseUrl + matchedDependencyUrl;
+    log(matchedDependencyUrl)
+  });
 // Will log ["@Emran", "@Raju", "@Noman"]
   //var authReq = new Request(githubBaseUrl + "/dependencies/authenticationHandler.js")
   //var authCodeString = await authReq.loadString();
