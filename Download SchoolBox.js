@@ -22,11 +22,11 @@ for (var i=0; i < scripts.length; i++) {
   var codeReq = new Request(githubBaseUrl + script.url)
   fileToBeWritten = await codeReq.loadString();
   // Download Dependencies
-  var matchedRequiredDependencies = fileToBeWritten.match(/insert\['(.*?)'\]/g) || [];
+  var matchedRequiredDependencies = fileToBeWritten.match(/insert\['(.*?)'\]/gi) || [];
   for (var y=0; y < matchedRequiredDependencies.length; y++) {
     var matchedDependency = matchedRequiredDependencies[y];
       // Get URL
-      var matchedDependencyUrl = matchedDependency.match(/insert\['(.*?)'\]/),
+      var matchedDependencyUrl = matchedDependency.match(/insert\['(.*?)'\]/i),
       matchedDependencyUrl = matchedDependencyUrl[1],
       matchedDependencyUrl = githubBaseUrl + matchedDependencyUrl;
       // Download
