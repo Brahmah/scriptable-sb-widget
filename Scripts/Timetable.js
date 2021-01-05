@@ -24,15 +24,6 @@ for (var i = 0; i < timetableData.Days.length; i++) {
 }
 
 //----------------------------------------------- Widget ---------------------------------------------------//
-async function setWidget() {
-  var widget =
-    config.widgetFamily == "small"
-      ? await createSmallWidget()
-      : config.widgetFamily == "medium"
-      ? await createMediumWidget()
-      : await createLargeWidget();
-  Script.setWidget(widget);
-}
 insert["/Dependencies/colors.js"];
 
 insert["/Dependencies/Timetable/widget.js"];
