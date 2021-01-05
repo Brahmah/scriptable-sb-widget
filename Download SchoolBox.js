@@ -23,16 +23,18 @@ for (var i=0; i < scripts.length; i++) {
   fileToBeWritten = await codeReq.loadString();
   // Download Dependencies
   var matchedRequiredDependencies = fileToBeWritten.match(/insert\['(.*?)'\]/g) || [];
-  matchedRequiredDependencies.forEach(matchedDependency => {
-    var matchedDependencyUrl = matchedDependency.match(/insert\['(.*?)'\]/),
+  for (var y=0; y < matchedRequiredDependencies.length; y++) {
+    var matchedDependency = matchedRequiredDependencies[y];
+      // Get URL
+      var matchedDependencyUrl = matchedDependency.match(/insert\['(.*?)'\]/),
       matchedDependencyUrl = matchedDependencyUrl[1],
       matchedDependencyUrl = githubBaseUrl + matchedDependencyUrl;
-    log(matchedDependencyUrl)
-  });
-// Will log ["@Emran", "@Raju", "@Noman"]
-  //var authReq = new Request(githubBaseUrl + "/dependencies/authenticationHandler.js")
-  //var authCodeString = await authReq.loadString();
-  //fileToBeWritten = String(fileToBeWritten).replace('/*<DOWNLOADER SCRIPT SHOULD INSERT AUTH CODE HERE>*/', authCodeString)
+      // Download
+      var req = new Request(matchedDependencyUrl);
+      var dependencyCode = await req.loadString();
+      // Replace Insert With Dependency Code
+      fileToBeWritten.replace(matchedDependency, dependencyCode);
+  }
   // Write File To Disk
-  //files.writeString(pathToCode, fileToBeWritten);
+  files.writeString(pathToCode, fileToBeWritten);
 }
