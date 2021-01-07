@@ -7,7 +7,10 @@ async function createWidget() {
 
   const widgetTitle = titleStack.addText("News");
   widgetTitle.font = Font.heavySystemFont(16);
-  widgetTitle.textColor = CONF_FONT_COLOR_WIDGET_TITLE;
+  widgetTitle.textColor = Color.dynamic(
+  new Color("#000000"),
+  new Color("#fefefe")
+);
   widgetTitle.lineLimit = 1;
   widgetTitle.minimumScaleFactor = 0.5;
 
@@ -75,13 +78,13 @@ async function addNewsItem(widget, newsItem) {
     newsItem.Author + " - " + newsItem.DateTimePublished
   );
   NewsDateTimeLabel.font = Font.heavySystemFont(12);
-  NewsDateTimeLabel.textColor = CONF_FONT_COLOR_DATE;
+  //NewsDateTimeLabel.textColor = CONF_FONT_COLOR_DATE;
   NewsDateTimeLabel.lineLimit = 1;
   NewsDateTimeLabel.minimumScaleFactor = 0.5;
 
   var NewsHeadlineLabel = StackCol.addText(newsItem.Title);
   NewsHeadlineLabel.font = Font.semiboldSystemFont(13);
-  NewsHeadlineLabel.textColor = CONF_FONT_COLOR_HEADLINE;
+  //NewsHeadlineLabel.textColor = CONF_FONT_COLOR_HEADLINE;
   NewsHeadlineLabel.lineLimit = 2;
 
   StackRow.addSpacer();
@@ -100,7 +103,7 @@ async function addNewsItem(widget, newsItem) {
   }
   NewsImage.cornerRadius = 8;
   if (config.widgetFamily == "small") {
-    NewsImage.tintColor = CONF_FONT_COLOR_HEADLINE;
+    //NewsImage.tintColor = CONF_FONT_COLOR_HEADLINE;
     NewsImage.imageOpacity = 0.5;
   }
   NewsImage.rightAlignImage();
