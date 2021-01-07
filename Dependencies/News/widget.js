@@ -30,7 +30,6 @@ async function createWidget() {
 
 
 async function createMultipleNewsWidget(widget) {
-  addBottomSpacer = false;
   var maximumInWidget =
     config.widgetFamily == "large"
       ? 4
