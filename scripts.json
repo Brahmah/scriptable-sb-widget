@@ -1,4 +1,10 @@
-[{
-	"url": "/Scripts/Timetable.js",
-	"filename": "Timetable.js"
-}]
+[
+  {
+    "url": "/Scripts/Timetable.js",
+    "filename": "Timetable.js"
+  },
+  {
+    "url": "/Scripts/News.js",
+    "filename": "News.js"
+  }
+]
