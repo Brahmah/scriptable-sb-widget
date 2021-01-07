@@ -60,13 +60,13 @@ async function addNewsItem(widget, newsItem) {
   var NewsDateTimeLabel = StackCol.addText(
     newsItem.Author + " - " + newsItem.DateTimePublished
   );
-  NewsDateTimeLabel.font = Font.heavySystemFont(12);
+  NewsDateTimeLabel.font = Font.heavySystemFont(11);
   NewsDateTimeLabel.textColor = Color.gray()
   NewsDateTimeLabel.lineLimit = 1;
   NewsDateTimeLabel.minimumScaleFactor = 0.5;
 
   var NewsHeadlineLabel = StackCol.addText(newsItem.Title);
-  NewsHeadlineLabel.font = Font.semiboldSystemFont(13);
+  NewsHeadlineLabel.font = Font.semiboldSystemFont(12);
   //NewsHeadlineLabel.textColor = CONF_FONT_COLOR_HEADLINE;
   NewsHeadlineLabel.lineLimit = 2;
 
