@@ -1,3 +1,6 @@
+var maximumInWidget =
+  config.widgetFamily == "large" ? 4 : config.widgetFamily == "medium" ? 2 : 1;
+
 async function createWidget() {
   const widget = new ListWidget();
 
