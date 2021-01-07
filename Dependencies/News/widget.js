@@ -54,9 +54,7 @@ async function createMultipleNewsWidget(widget) {
 async function addNewsItem(widget, newsItem) {
   var StackRow = widget.addStack();
   StackRow.layoutHorizontally();
-  let scriptName = String(Script.name()).replace(" ", "%20");
-  StackRow.url = `scriptable:///run/${scriptName}?url=${newsItem.URL}`;
-
+  StackRow.url = await getWidgetTapTargetUrl(newsItem.URL)
   var StackCol = StackRow.addStack();
   StackCol.layoutVertically();
 
@@ -157,7 +155,12 @@ async function createSingleNewsWidget(widget) {
   );
   labelHeadline.lineLimit = 3;
 
-  widget.url = newsItems[0].URL;
+  widget.url = await getWidgetTapTargetUrl(newsItems[0].URL);
+}
+
+async function getWidgetTapTargetUrl(URL) {
+  let scriptName = String(Script.name()).replace(" ", "%20");
+  StackRow.url = `scriptable:///run/${scriptName}?url=${URL}`;
 }
 
 async function generateErrorMsg(widget) {
