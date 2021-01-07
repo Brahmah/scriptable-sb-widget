@@ -1,6 +1,6 @@
 async function getWidgetTapTargetUrl(URL) {
   let scriptName = String(Script.name()).replace(" ", "%20");
-  StackRow.url = `scriptable:///run/${scriptName}?url=${URL}`;
+  return `scriptable:///run/${scriptName}?url=${URL}`;
 }
 
 async function openTapTargetWebView(URL) {
