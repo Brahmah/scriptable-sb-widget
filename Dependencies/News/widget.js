@@ -16,11 +16,10 @@ async function createWidget() {
 
   // MAIN
   if (newsItems) {
-    if (maximumInWidget != 1) {
-      await createMultipleNewsWidget(widget);
-    }
-    if (maximumInWidget == 1) {
+    if (newsItems.length == 1 || config.widgetFamily == "small") {
       await createSingleNewsWidget(widget);
+    } else {
+      await createMultipleNewsWidget(widget);
     }
   } else {
     await generateErrorMsg(widget);
