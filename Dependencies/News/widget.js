@@ -1,6 +1,3 @@
-var maximumInWidget =
-  config.widgetFamily == "large" ? 4 : config.widgetFamily == "medium" ? 2 : 1;
-
 async function createWidget() {
   const widget = new ListWidget();
 
@@ -11,9 +8,9 @@ async function createWidget() {
   const widgetTitle = titleStack.addText("News");
   widgetTitle.font = Font.heavySystemFont(16);
   widgetTitle.textColor = Color.dynamic(
-  new Color("#000000"),
-  new Color("#fefefe")
-);
+    new Color("#000000"),
+    new Color("#fefefe")
+  );
   widgetTitle.lineLimit = 1;
   widgetTitle.minimumScaleFactor = 0.5;
 
@@ -32,36 +29,25 @@ async function createWidget() {
   return widget;
 }
 
-async function generateErrorMsg(widget) {
-  widget.addSpacer();
-  const sadFace = widget.addText(":(");
-  sadFace.font = Font.regularSystemFont(
-    config.widgetFamily === "large" ? 190 : 60
-  );
-  sadFace.textColor = Color.white();
-  sadFace.lineLimit = 1;
-  sadFace.minimumScaleFactor = 0.1;
-
-  widget.addSpacer();
-
-  const errMsg = widget.addText("Couldn't load data");
-  errMsg.font = Font.regularSystemFont(12);
-  errMsg.textColor = Color.white();
-
-  // Background
-  widget.backgroundColor = new Color("#1f67b1");
-}
 
 async function createMultipleNewsWidget(widget) {
+  addBottomSpacer = false;
+  var maximumInWidget =
+    config.widgetFamily == "large"
+      ? 4
+      : config.widgetFamily == "medium"
+      ? 2
+      : 1;
   widget.setPadding(16, 16, 16, 16);
   widget.spacing = 10;
   for (var i = 0; i < newsItems.length; i++) {
     if (i < maximumInWidget) {
       await addNewsItem(widget, newsItems[i]);
-      if (i > maximumInWidget - 1 && config.widgetFamily == "large") {
-        widget.addSpacer();
-      }
     }
+  }
+  // Add Spacer If There Are Less NewsItems Than The Widget Size Can Support
+  if (newsItems.length < maximumInWidget) {
+    widget.addSpacer();
   }
   widget.backgroundColor = Color.dynamic(Color.white(), new Color("#1c1c1e"));
 }
@@ -69,10 +55,8 @@ async function createMultipleNewsWidget(widget) {
 async function addNewsItem(widget, newsItem) {
   var StackRow = widget.addStack();
   StackRow.layoutHorizontally();
-  StackRow.url = `scriptable:///run/${String(Script.name()).replace(
-    " ",
-    "%20"
-  )}?url=${newsItem.URL}`;
+  let scriptName = String(Script.name()).replace(" ", "%20");
+  StackRow.url = `scriptable:///run/${scriptName}?url=${newsItem.URL}`;
 
   var StackCol = StackRow.addStack();
   StackCol.layoutVertically();
@@ -123,6 +107,15 @@ async function createSingleNewsWidget(widget) {
   image = await blurImage(image);
   widget.backgroundImage = await image;
 
+  // draw gradient over background image for better legibility
+  const gradient = new LinearGradient();
+  gradient.locations = [0, 1];
+  gradient.colors = [
+    Color.dynamic(new Color("#fefefe", 0.3), new Color("#2c2c2e", 0.3)),
+    Color.dynamic(new Color("#fefefe", 1.0), new Color("#2c2c2e", 1.0)),
+  ];
+  widget.backgroundGradient = gradient;
+
   const postStack = widget.addStack();
   postStack.layoutVertically();
 
@@ -166,4 +159,24 @@ async function createSingleNewsWidget(widget) {
   labelHeadline.lineLimit = 3;
 
   widget.url = newsItems[0].URL;
+}
+
+async function generateErrorMsg(widget) {
+  widget.addSpacer();
+  const sadFace = widget.addText(":(");
+  sadFace.font = Font.regularSystemFont(
+    config.widgetFamily === "large" ? 190 : 60
+  );
+  sadFace.textColor = Color.white();
+  sadFace.lineLimit = 1;
+  sadFace.minimumScaleFactor = 0.1;
+
+  widget.addSpacer();
+
+  const errMsg = widget.addText("Couldn't load data");
+  errMsg.font = Font.regularSystemFont(12);
+  errMsg.textColor = Color.white();
+
+  // Background
+  widget.backgroundColor = new Color("#1f67b1");
 }
