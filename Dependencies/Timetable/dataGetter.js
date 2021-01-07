@@ -145,7 +145,7 @@ let timetableData = {
         },
       ],
     },
-    ,
+
     {
       Name: "Thursday",
       IsCurrentDay: false,
@@ -194,7 +194,7 @@ let timetableData = {
         },
       ],
     },
-    ,
+
     {
       Name: "Friday",
       IsCurrentDay: false,
