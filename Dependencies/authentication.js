@@ -1,12 +1,4 @@
 const DEFAULT_SCHOOLBOX_URL = null;
-//
-//const files = FileManager.local();
-//const moduleDir = files.joinPath(files.libraryDirectory(), "/schoolbox_modules");
-//
-//let SchoolBoxAuth = importModule(moduleDir + '/auth.js');
-//
-//var auth = await SchoolBoxAuth.presentMenu();
-//console.log(auth);
 
 // Prefix used for items in the keychain.
 let KEYCHAIN_PREFIX = "schoolbox";
@@ -18,8 +10,8 @@ let urlKey = KEYCHAIN_PREFIX + ".url";
 async function makeAuthRequest(crededentials) {
   crededentials = crededentials || getCrededentials();
   // Authenticate With The Server
-  const authUrl =
-    DEFAULT_SCHOOLBOX_URL + "/login" || crededentials.url + "/login"; 
+  var authUrl = DEFAULT_SCHOOLBOX_URL || crededentials.url;
+  authUrl = authUrl + "/login";
   const authReq = new Request(authUrl);
   authReq.method = "POST";
   authReq.body = `Submit=Login&page=&password=${crededentials.password}&username=${crededentials.username}`;
@@ -39,7 +31,7 @@ async function makeAuthRequest(crededentials) {
  * Menu
  */
 
-module.exports.presentMenu = async () => {
+async function presentAuthMenu() {
   var crededentials = getCrededentials();
   let alert = new Alert();
   alert.title = Script.name();
@@ -51,37 +43,18 @@ module.exports.presentMenu = async () => {
     alert.addDestructiveAction("Revoke SchoolBox Connection");
   }
   alert.addCancelAction("Cancel");
-  let idx = await alert.presentAlert();
-  if (crededentials == null && idx == 0) {
-    crededentials = await getFromKeychainOrPrompt();
-    await makeAuthRequest(crededentials);
-  } else {
+  let clickedActionId = await alert.presentAlert();
+  // Authorize With SchoolBox
+  if (crededentials == null && clickedActionId == 0) {
+    await urlPrompt();
+  }
+  // Revoke SchoolBox Connection
+  if (crededentials != null && clickedActionId == 0) {
     clearCrededentials();
   }
-};
-
-/**
- * Helpers
- */
-
-async function getFromKeychainOrPrompt() {
-  var crededentials = getCrededentials();
-
-  if (crededentials == null) {
-    // Schoolbox URL Prompt
-    var urlPrompt = await urlPrompt();
-    // Username/Password Prompt
-    var usernamePasswordPrompt = await usernamePasswordPrompt();
-    // Create Object Of Prompt
-    crededentials = {
-      username: usernamePasswordPrompt.textFieldValue(0),
-      password: usernamePasswordPrompt.textFieldValue(1),
-      url: urlPrompt.url,
-    };
-  }
-
-  if (crededentials != null) {
-    return crededentials;
+  // Canceled
+  if (clickedActionId == 1) {
+    Script.complete();
   }
 }
 
@@ -91,26 +64,45 @@ async function urlPrompt() {
   alert.addTextField("URL", "https://schoolbox.");
   alert.addAction("Continue");
   await alert.present();
-  var isValidURL = await checkURL(alert.textFieldValue(0));
+  var url = alert.textFieldValue(0);
+  var isValidURL = await checkURL(url);
   if (!isValidURL) {
     Script.complete();
   } else {
-    url = alert.textFieldValue(0);
+    await loginPrompt(url);
   }
-  return alert;
 }
 
-async function usernamePasswordPrompt() {
-  let alert = new Alert();
-  alert.title = "Enter SchoolBox URL";
-  alert.title = "Enter SchoolBox Crededentials";
-  alert.message = "Hope you didn't forget them";
-  alert.addTextField("Username");
-  alert.addSecureTextField("Password");
-  alert.addCancelAction("Cancel");
-  alert.addAction("Save");
-  await alert.present();
-  return alert;
+async function loginPrompt(url) {
+  let webView = new WebView();
+  await webView.loadURL(url);
+  var loginPageJS = `
+	// Hide Login Button
+	document.querySelector("div.small-12.column.login-links").style.display = "none";
+	// Hide Remember Me
+	document.querySelector("label[for=rememberme]").style.display = "none";
+	// Replace Password Forget With Login Instructions
+	document.querySelector("div.small-12.column p a").parentElement.innerHTML = '<p style="color:white">Press "Close" In The Top Left Corner To Login</p>';
+	// Make Everything On The Footer Non-Interactive
+	document.getElementById("footer").style.pointerEvents = "none";
+`;
+  await webView.evaluateJavaScript(loginPageJS, false);
+  await webView.present(true);
+
+  var username = await webView.evaluateJavaScript(
+    `document.getElementById("username").value`
+  );
+  var password = await webView.evaluateJavaScript(
+    `document.getElementById("password").value`
+  );
+  
+  var crededentials = {
+    username: username,
+    password: password,
+    url: url
+  };
+
+  await checkAuth(crededentials)
 }
 
 function getCrededentials() {
@@ -146,18 +138,25 @@ async function checkAuth(crededentials) {
     crededentials.username != null &&
     crededentials.username.length > 0 &&
     crededentials.password != null &&
-    crededentials.password.length > 0 &&
-    crededentials.url != null &&
-    crededentials.url.length > 0
+    crededentials.password.length > 0
   ) {
     var authReq = await makeAuthRequest(crededentials);
+    // If No Error
     if (!authReq.error) {
       Keychain.set(usernameKey, crededentials.username);
       Keychain.set(urlKey, crededentials.url);
       Keychain.set(passwordKey, crededentials.password);
-      return true;
+      // Show Success Message
+      var alert = new Alert();
+      alert.title = Script.name();
+      alert.message = "Authentication Successful!";
+      await alert.present();
     } else {
-      return false;
+      // Show Error Message
+      var alert = new Alert();
+      alert.title = Script.name();
+      alert.message = "Authentication Successful!";
+      await alert.present();
     }
   }
 }
