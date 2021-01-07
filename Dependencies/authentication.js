@@ -155,7 +155,7 @@ async function checkAuth(crededentials) {
       // Show Error Message
       var alert = new Alert();
       alert.title = Script.name();
-      alert.message = "Authentication Successful!";
+      alert.message = "Authentication Failed: " + authReq.error;
       await alert.present();
     }
   }
