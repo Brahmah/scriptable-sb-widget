@@ -86,10 +86,6 @@ async function addNewsItem(widget, newsItem) {
     NewsImage.imageSize = new Size(45.66, 45.66);
   }
   NewsImage.cornerRadius = 8;
-  if (config.widgetFamily == "small") {
-    //NewsImage.tintColor = CONF_FONT_COLOR_HEADLINE;
-    NewsImage.imageOpacity = 0.5;
-  }
   NewsImage.rightAlignImage();
 }
 
