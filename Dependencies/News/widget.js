@@ -120,6 +120,7 @@ async function createSingleNewsWidget(widget) {
 
   var ImageReq = new Request(newsItems[0].Image);
   var image = await ImageReq.loadImage();
+  image = await blurImage(image);
   widget.backgroundImage = await image;
 
   const postStack = widget.addStack();
