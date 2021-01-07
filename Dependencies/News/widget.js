@@ -158,11 +158,6 @@ async function createSingleNewsWidget(widget) {
   widget.url = await getWidgetTapTargetUrl(newsItems[0].URL);
 }
 
-async function getWidgetTapTargetUrl(URL) {
-  let scriptName = String(Script.name()).replace(" ", "%20");
-  StackRow.url = `scriptable:///run/${scriptName}?url=${URL}`;
-}
-
 async function generateErrorMsg(widget) {
   widget.addSpacer();
   const sadFace = widget.addText(":(");

@@ -1,9 +1,10 @@
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
 // icon-color: deep-blue; icon-glyph: clock;
-
-//--------------------------------------------- Authentication ----------------------------------------------//
 insert["/Dependencies/authentication.js"];
+insert["/Dependencies/TapTargetHelper.js"];
+insert["/Dependencies/colors.js"];
+insert["/Dependencies/Timetable/widget.js"];
 
 //----------------------------------------------- Get Data --------------------------------------------------//
 
@@ -24,22 +25,25 @@ for (var i = 0; i < timetableData.Days.length; i++) {
 }
 
 //----------------------------------------------- Widget ---------------------------------------------------//
-insert["/Dependencies/colors.js"];
 
-insert["/Dependencies/Timetable/widget.js"];
 
 //----------------------------------------------- Script Main -----------------------------------------------//
-if (config.runsInWidget) {
-  var widget =
-    config.widgetFamily == "small"
-      ? await createSmallWidget()
-      : config.widgetFamily == "medium"
-      ? await createMediumWidget()
-      : await createLargeWidget();
-  Script.setWidget(widget);
+if (args.queryParameters.url) {
+  await openTapTargetWebView(args.queryParameters.url);
 } else {
-  var widget = await createMediumWidget();
-  widget.presentMedium();
+  if (config.runsInWidget) {
+    var widget =
+      config.widgetFamily == "small"
+        ? await createSmallWidget()
+        : config.widgetFamily == "medium"
+        ? await createMediumWidget()
+        : await createLargeWidget();
+    Script.setWidget(widget);
+  } else {
+    const widget = await createMediumWidget();
+    widget.presentMedium();
+  }
 }
 
 Script.complete();
+
