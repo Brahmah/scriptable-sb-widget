@@ -245,3 +245,19 @@ let timetableData = {
     },
   ],
 };
+
+//-------------------------- Timetable Breakdown ----------------------------//
+var timetable = {};
+for (var i = 0; i < timetableData.Days.length; i++) {
+  if (timetableData.Days[i].IsCurrentDay) {
+    try {
+      timetable.currentDay = timetableData.Days[i];
+    } catch {}
+    try {
+      timetable.nextDay = timetableData.Days[i + 1];
+    } catch {}
+    try {
+      timetable.previousDay = timetableData.Days[i - 1];
+    } catch {}
+  }
+}
