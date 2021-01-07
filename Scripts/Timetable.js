@@ -9,7 +9,6 @@ insert["/Dependencies/Timetable/widget.js"];
 
 //----------------------------------------------- Widget ---------------------------------------------------//
 
-
 //----------------------------------------------- Script Main -----------------------------------------------//
 if (args.queryParameters.url) {
   await openTapTargetWebView(args.queryParameters.url);
@@ -29,4 +28,3 @@ if (args.queryParameters.url) {
 }
 
 Script.complete();
-
