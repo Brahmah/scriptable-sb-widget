@@ -61,7 +61,7 @@ async function addNewsItem(widget, newsItem) {
     newsItem.Author + " - " + newsItem.DateTimePublished
   );
   NewsDateTimeLabel.font = Font.heavySystemFont(12);
-  //NewsDateTimeLabel.textColor = CONF_FONT_COLOR_DATE;
+  NewsDateTimeLabel.textColor = Color.gray()
   NewsDateTimeLabel.lineLimit = 1;
   NewsDateTimeLabel.minimumScaleFactor = 0.5;
 
