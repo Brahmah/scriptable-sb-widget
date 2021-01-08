@@ -32,7 +32,7 @@ async function createWidget() {
 async function createMultipleNewsWidget(widget) {
   var maximumInWidget =
     config.widgetFamily == "large"
-      ? 4
+      ? 5
       : config.widgetFamily == "medium"
       ? 2
       : 1;
@@ -78,8 +78,7 @@ async function addNewsItem(widget, newsItem) {
   }
 
   if (config.widgetFamily == "large") {
-    NewsImage.imageSize = new Size(63, 63);
-    NewsHeadlineLabel.lineLimit = 3;
+    NewsImage.imageSize = new Size(50, 50);
   } else {
     NewsImage.imageSize = new Size(45.66, 45.66);
   }
