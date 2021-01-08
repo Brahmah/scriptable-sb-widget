@@ -11,7 +11,7 @@ let timetableData = {
           Location: "C3",
           Period: "P1",
           HasPassed: true,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "English",
@@ -19,7 +19,7 @@ let timetableData = {
           Location: "A1",
           Period: "P2",
           HasPassed: true,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "General Science",
@@ -27,7 +27,7 @@ let timetableData = {
           Location: "C3",
           Period: "P3",
           HasPassed: false,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "Mathamatics",
@@ -35,7 +35,7 @@ let timetableData = {
           Location: "C6",
           Period: "P4",
           HasPassed: false,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "Languages French",
@@ -43,7 +43,7 @@ let timetableData = {
           Location: "C2",
           Period: "P5",
           HasPassed: false,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "Other Made-Up Class",
@@ -51,7 +51,7 @@ let timetableData = {
           Location: "C3",
           Period: "P6",
           HasPassed: false,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
       ],
     },
@@ -65,7 +65,7 @@ let timetableData = {
           Location: "C3",
           Period: "P1",
           HasPassed: true,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "English",
@@ -73,7 +73,7 @@ let timetableData = {
           Location: "A1",
           Period: "P2",
           HasPassed: true,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "General Science",
@@ -81,7 +81,7 @@ let timetableData = {
           Location: "C3",
           Period: "P3",
           HasPassed: false,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "Mathamatics",
@@ -89,7 +89,7 @@ let timetableData = {
           Location: "C6",
           Period: "P4",
           HasPassed: false,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "Languages French",
@@ -97,7 +97,7 @@ let timetableData = {
           Location: "C2",
           Period: "P5",
           HasPassed: false,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "Other Made-Up Class",
@@ -105,7 +105,7 @@ let timetableData = {
           Location: "C3",
           Period: "P6",
           HasPassed: false,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
       ],
     },
@@ -119,7 +119,7 @@ let timetableData = {
           Location: "C3",
           Period: "P1",
           HasPassed: true,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "Mathamatics",
@@ -127,7 +127,7 @@ let timetableData = {
           Location: "A1",
           Period: "P2",
           HasPassed: true,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "General Science",
@@ -135,7 +135,7 @@ let timetableData = {
           Location: "C3",
           Period: "P3",
           HasPassed: false,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "Mathamatics",
@@ -143,7 +143,7 @@ let timetableData = {
           Location: "C6",
           Period: "P4",
           HasPassed: false,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "Languages French",
@@ -151,7 +151,7 @@ let timetableData = {
           Location: "C2",
           Period: "P5",
           HasPassed: false,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "Other Made-Up Class",
@@ -159,7 +159,7 @@ let timetableData = {
           Location: "C3",
           Period: "P6",
           HasPassed: false,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
       ],
     },
@@ -174,7 +174,7 @@ let timetableData = {
           Location: "C3",
           Period: "P1",
           HasPassed: true,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "Mathamatics",
@@ -182,7 +182,7 @@ let timetableData = {
           Location: "A1",
           Period: "P2",
           HasPassed: true,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "General Science",
@@ -190,7 +190,7 @@ let timetableData = {
           Location: "C3",
           Period: "P3",
           HasPassed: false,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "Mathamatics",
@@ -198,7 +198,7 @@ let timetableData = {
           Location: "C6",
           Period: "P4",
           HasPassed: false,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "Languages French",
@@ -206,7 +206,7 @@ let timetableData = {
           Location: "C2",
           Period: "P5",
           HasPassed: false,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "Other Made-Up Class",
@@ -214,7 +214,7 @@ let timetableData = {
           Location: "C3",
           Period: "P6",
           HasPassed: false,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
       ],
     },
@@ -228,7 +228,7 @@ let timetableData = {
           Location: "C3",
           Period: "P1",
           HasPassed: true,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "Mathamatics",
@@ -236,7 +236,7 @@ let timetableData = {
           Location: "A1",
           Period: "P2",
           HasPassed: true,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "General Science",
@@ -244,7 +244,7 @@ let timetableData = {
           Location: "C3",
           Period: "P3",
           HasPassed: false,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "Mathamatics",
@@ -252,7 +252,7 @@ let timetableData = {
           Location: "C6",
           Period: "P4",
           HasPassed: false,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "Languages French",
@@ -260,7 +260,7 @@ let timetableData = {
           Location: "C2",
           Period: "P5",
           HasPassed: false,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
         {
           Name: "Other Made-Up Class",
@@ -268,7 +268,7 @@ let timetableData = {
           Location: "C3",
           Period: "P6",
           HasPassed: false,
-          URl: "https://google.com",
+          URL: "https://google.com",
         },
       ],
     },
