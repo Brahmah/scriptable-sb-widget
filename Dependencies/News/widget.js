@@ -67,7 +67,6 @@ async function addNewsItem(widget, newsItem) {
 
   var NewsHeadlineLabel = StackCol.addText(newsItem.Title);
   NewsHeadlineLabel.font = Font.semiboldSystemFont(12);
-  //NewsHeadlineLabel.textColor = CONF_FONT_COLOR_HEADLINE;
   NewsHeadlineLabel.lineLimit = 2;
 
   StackRow.addSpacer();
