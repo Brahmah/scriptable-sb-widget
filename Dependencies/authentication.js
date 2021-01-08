@@ -77,15 +77,15 @@ async function loginPrompt(url) {
   let webView = new WebView();
   await webView.loadURL(url);
   var loginPageJS = `
-	// Hide Login Button
-	document.querySelector("div.small-12.column.login-links").style.display = "none";
-	// Hide Remember Me
-	document.querySelector("label[for=rememberme]").style.display = "none";
-	// Replace Password Forget With Login Instructions
-	document.querySelector("div.small-12.column p a").parentElement.innerHTML = '<p style="color:white">Press "Close" In The Top Left Corner To Login</p>';
-	// Make Everything On The Footer Non-Interactive
-	document.getElementById("footer").style.pointerEvents = "none";
-`;
+    // Hide Login Button
+    document.querySelector("div.small-12.column.login-links").style.display = "none";
+    // Hide Remember Me
+    document.querySelector("label[for=rememberme]").style.display = "none";
+    // Replace Password Forget With Login Instructions
+    document.querySelector("div.small-12.column p a").parentElement.innerHTML = '<p style="color:white">Press "Close" In The Top Left Corner To Login</p>';
+    // Make Everything On The Footer Non-Interactive
+    document.getElementById("footer").style.pointerEvents = "none";
+  `;
   await webView.evaluateJavaScript(loginPageJS, false);
   await webView.present(true);
 
