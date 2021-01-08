@@ -16,7 +16,7 @@ async function createWidget() {
 
   // MAIN
   if (newsItems) {
-    if (newsItems.length == 1 || config.widgetFamily == "small") {
+    if (config.widgetFamily == "small") {
       await createSingleNewsWidget(widget);
     } else {
       await createMultipleNewsWidget(widget);
