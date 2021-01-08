@@ -7,10 +7,10 @@ async function createWidget() {
 
   const widgetTitle = titleStack.addText("News");
   widgetTitle.font = Font.heavySystemFont(16);
-  widgetTitle.textColor = Color.dynamic(
-    new Color("#000000"),
-    new Color("#fefefe")
-  );
+  widgetTitle.textColor =
+    config.widgetFamily == "small"
+      ? new Color("#fefefe")
+      : Color.dynamic(new Color("#000000"), new Color("#fefefe"));
   widgetTitle.lineLimit = 1;
   widgetTitle.minimumScaleFactor = 0.5;
 
@@ -92,7 +92,7 @@ async function createSingleNewsWidget(widget) {
   // use default padding
   widget.useDefaultPadding();
   widget.addSpacer();
-  widget.backgroundColor = Color.dynamic(Color.white(), new Color("#1c1c1e"));
+  widget.backgroundColor = new Color("#1c1c1e");
 
   var ImageReq = new Request(newsItems[0].Image);
   var image = await ImageReq.loadImage();
@@ -102,10 +102,7 @@ async function createSingleNewsWidget(widget) {
   // draw gradient over background image for better legibility
   const gradient = new LinearGradient();
   gradient.locations = [0, 1];
-  gradient.colors = [
-    Color.dynamic(new Color("#fefefe", 0.3), new Color("#2c2c2e", 0.3)),
-    Color.dynamic(new Color("#fefefe", 1.0), new Color("#2c2c2e", 1.0)),
-  ];
+  gradient.colors = [new Color("#2c2c2e", 0.3), new Color("#2c2c2e", 1.0)];
   widget.backgroundGradient = gradient;
 
   const postStack = widget.addStack();
@@ -116,38 +113,26 @@ async function createSingleNewsWidget(widget) {
       newsItems[0].Author + " - " + newsItems[0].DateTimePublished
     );
     labelDateTime.font = Font.heavySystemFont(12);
-    labelDateTime.textColor = Color.dynamic(
-      new Color("#8a8a8d"),
-      new Color("#9f9fa4")
-    );
+    labelDateTime.textColor = new Color("#9f9fa4");
     labelDateTime.lineLimit = 1;
     labelDateTime.minimumScaleFactor = 0.5;
   } else {
     const labelWidgetTitle = postStack.addText(newsItems[0].Author);
     labelWidgetTitle.font = Font.heavySystemFont(12);
-    labelWidgetTitle.textColor = Color.dynamic(
-      new Color("#8a8a8d"),
-      new Color("#9f9fa4")
-    );
+    labelWidgetTitle.textColor = new Color("#9f9fa4");
     labelWidgetTitle.lineLimit = 1;
     labelWidgetTitle.minimumScaleFactor = 0.5;
 
     const labelDateTime = postStack.addText(newsItems[0].DateTimePublished);
     labelDateTime.font = Font.heavySystemFont(12);
-    labelDateTime.textColor = Color.dynamic(
-      new Color("#8a8a8d"),
-      new Color("#9f9fa4")
-    );
+    labelDateTime.textColor = new Color("#9f9fa4");
     labelDateTime.lineLimit = 1;
     labelDateTime.minimumScaleFactor = 0.5;
   }
 
   const labelHeadline = postStack.addText(newsItems[0].Title);
   labelHeadline.font = Font.semiboldSystemFont(13);
-  labelHeadline.textColor = Color.dynamic(
-    new Color("#000000"),
-    new Color("#fefefe")
-  );
+  labelHeadline.textColor = new Color("#fefefe");
   labelHeadline.lineLimit = 3;
 
   widget.url = await getWidgetTapTargetUrl(newsItems[0].URL);
