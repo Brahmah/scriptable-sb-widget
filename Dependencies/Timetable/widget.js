@@ -105,7 +105,7 @@ async function addSchedule(schedulesStack, index, scheduleData) {
   }
   
   let schedule = schedulesStack.addStack();
-  schedule.url = "https://test/" + index
+  schedule.url = await getWidgetTapTargetUrl(scheduleData.URL);
   
   let coloredLine = schedule.addStack();
   coloredLine.cornerRadius = 2;
