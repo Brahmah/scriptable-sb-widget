@@ -14,13 +14,7 @@ if (args.queryParameters.url) {
   await openTapTargetWebView(args.queryParameters.url);
 } else {
   if (config.runsInWidget) {
-    var widget =
-      config.widgetFamily == "small"
-        ? await createSmallWidget()
-        : config.widgetFamily == "medium"
-        ? await createMediumWidget()
-        : await createLargeWidget();
-    Script.setWidget(widget);
+    await setWidget();
   } else {
     const widget = await createMediumWidget();
     widget.presentMedium();
